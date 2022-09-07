@@ -1,0 +1,42 @@
+<div class="col-md-6 offset-md-2" >
+    <h3> Create Employee </h3>
+    <form (ngSubmit) = "onSubmit()"style="margin-top:50px;" >
+
+        <div class="form-group row">
+            <label class="col-4"> Email:</label>
+            <input type="text" class ="form-control col-8" id = "email"
+                [(ngModel)] = "employee.email" name = "email"
+                
+                >
+        </div>
+    
+        <div class="form-group row">
+            <label class="col-4"> User Name:</label>
+            <input type="text" class ="form-control col-8" id = "userName"
+                [(ngModel)] = "employee.userName" name = "userName">
+        </div>
+    
+        <div class="form-group row">
+            <label class="col-4"> password:</label>
+            <input type="text" class ="form-control col-8" id = "password"
+                [(ngModel)] = "employee.password" name = "password">
+        </div>
+        <div class="form-group row">  
+            <label class="col-4"> Role:</label>
+            <select [(ngModel)] = "employee.id_role" name="role" id="id_role" class='form-control col-8'>
+                <option value="1">SUPER_ADMIN</option>
+                <option value="2">USER</option>
+                </select>
+            </div>
+          <div class="form-group row">  
+            <label class="col-4"> Département:</label>
+            <select [(ngModel)] = "employee.id_departement" name="role" id="id_departement" class='form-control col-8'>
+                <option *ngFor="let dept of this.departement_data" 
+                [value]="dept.id_departement">{{ dept.nom_departement }}</option>
+                </select>
+            </div>
+        <button class = "btn btn-success" type ="submit">Submit</button>
+    
+    </form>
+  
+    </div> 

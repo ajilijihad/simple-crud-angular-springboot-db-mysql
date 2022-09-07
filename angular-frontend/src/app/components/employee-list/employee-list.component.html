@@ -1,0 +1,24 @@
+<h2> Employee List</h2>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th> User name</th>
+            <th> DepName </th>
+            <th> Email </th>
+            <th *ngIf="role=='1'"> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let employee of employees" >
+            <td> {{ employee.userName }} </td>
+            <td *ngIf="employee.id_departement=='1'"> Info</td>
+            <td *ngIf="employee.id_departement=='2'"> Gestion</td>
+            <td *ngIf="employee.id_departement=='3'"> RH</td>
+            <td> {{ employee.email }} </td>
+            <td *ngIf="role=='1'">                
+                <button (click) = "deleteEmployee(employee.id_user)" class = "btn btn-danger" style="margin: 0 10px"> Delete</button> 
+                <button (click) = "updateEmployee(employee.id_user)" class = "btn btn-info"> Update</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

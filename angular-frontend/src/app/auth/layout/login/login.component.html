@@ -1,0 +1,62 @@
+<div class="col-md-4 offset-md-4" style="margin-top:150px;" >
+    <h3>Login page</h3>
+    <form  [formGroup]="loginForm"(ngSubmit) = "loginForm.valid && onSubmit()"style="margin-top:50px;" >
+        <div class="form-group row">
+            <label class="col-4"> User Name:</label>
+            <div class="col-8">
+            <input type="text" class ="form-control row" id = "userName"
+                name = "userName"
+                formControlName="userName"
+             [ngClass]="{
+              'is-invalid':
+              loginForm.get('userName')?.touched && loginForm.get('userName').invalid
+            }"
+                >
+                <div
+                *ngIf="loginForm.get('userName')?.touched && loginForm.get('userName').invalid"
+                class="invalid-feedback row"
+              >
+                <div class="errormsg" *ngIf="loginForm.get('userName').errors.required">
+                 User name obligatoir *
+                </div>
+              </div></div>
+        </div>
+    
+        <div class="form-group row">
+            <label class="col-4"> password:</label>
+            <div class="col-8">
+            <input type="password" class ="form-control row" id = "password"
+            name = "password"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid': loginForm.get('password')?.touched && loginForm.get('password').invalid
+            }"
+          />
+          <div
+            *ngIf="loginForm.get('password')?.touched && loginForm.get('password').invalid"
+            class="invalid-feedback row"
+          >
+            <div class="errormsg" *ngIf="loginForm.get('password').errors.required">
+              Password obligatoir *
+            </div>
+            <div class="errormsg" *ngIf="loginForm.get('password').errors.minlength">
+            Password doit etre au mois 6 character *
+            </div>
+          </div>
+          </div>
+        </div>
+       
+    </form>
+     <div class="row">
+            <div class="col-3"> 
+                <button class = "btn btn-success" 
+                [disabled]="!loginForm.valid"
+                type ="submit"
+                (click)="login()"
+                 style="background-color: rgb(74, 235, 53);  color: black;border: 2px solid black;">Connexion</button>
+            </div>
+            <div class="col-9">
+                   <a routerLink="/register" routerLinkActive="active" class="nav-link" style="margin-left:10px;" >Vous n'avez pas de compte ? S'inscrire</a>
+            </div>
+        </div>
+    </div> 

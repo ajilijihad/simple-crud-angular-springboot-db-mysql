@@ -1,0 +1,160 @@
+
+    <div class="col-md-4 offset-md-4" style="margin-top: 80px;">
+    <h3> Creé un compte</h3>
+    <form  [formGroup]="registerForm" (ngSubmit) = "registerForm.valid && onSubmit()"style="margin-top:50px;" >
+
+        <div class="form-group row">
+            <label class="col-4"> Email:</label>
+            <div class="col-8">
+           <input type="text" class ="form-control row" id = "email"
+                name = "email"
+                formControlName="email"
+             [ngClass]="{
+              'is-invalid':
+              registerForm.get('email')?.touched && registerForm.get('email').invalid
+            }"
+                > 
+                <div
+                *ngIf="registerForm.get('email')?.touched && registerForm.get('email').invalid"
+                class="invalid-feedback row"
+              >
+                <div class="errormsg" *ngIf="registerForm.get('email').errors.required">
+                 Email obligatoir *
+                </div>
+                <div class="errormsg" *ngIf="registerForm.get('email').errors.email">
+                  Email invalid format *
+                </div>
+              </div> 
+            </div>
+            
+                           
+        </div>
+    
+        <div class="form-group row">
+            <label class="col-4"> User Name:</label>
+            <div class="col-8">
+            <input type="text" class ="form-control row" id = "userName"
+                name = "userName"
+                     formControlName="userName"
+             [ngClass]="{
+              'is-invalid':
+              registerForm.get('userName')?.touched && registerForm.get('userName').invalid
+            }"
+                >
+                <div
+                *ngIf="registerForm.get('userName')?.touched && registerForm.get('userName').invalid"
+                class="invalid-feedback row"
+              >
+                <div class="errormsg" *ngIf="registerForm.get('userName').errors.required">
+                 User name obligatoir *
+                </div>
+              </div></div>
+        </div>
+    
+        <div class="form-group row">
+            <label class="col-4"> password:</label>
+            <div class="col-8">
+            <input type="password" class ="form-control row" id = "password"
+            name = "password"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid': registerForm.get('password')?.touched && registerForm.get('password').invalid
+            }"
+          />
+          <div
+            *ngIf="registerForm.get('password')?.touched && registerForm.get('password').invalid"
+            class="invalid-feedback row"
+          >
+            <div class="errormsg" *ngIf="registerForm.get('password').errors.required">
+              Password obligatoir *
+            </div>
+            <div class="errormsg" *ngIf="registerForm.get('password').errors.minlength">
+            Password doit etre au mois 6 character *
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-4">Confirm password:</label>
+          <div class="col-8">
+          <input type="password" class ="form-control row" id = "passwordd"
+          name = "passwordd"
+          formControlName="passwordd"
+          [ngClass]="{
+            'is-invalid': registerForm.get('passwordd')?.touched && registerForm.get('passwordd').invalid
+          }"
+        />
+        <div
+          *ngIf="registerForm.get('passwordd')?.touched && registerForm.get('passwordd').invalid"
+          class="invalid-feedback row"
+        >
+          <div class="errormsg" *ngIf="registerForm.get('passwordd').errors.required">
+            Password obligatoir *
+          </div>
+          <div class="errormsg" *ngIf="registerForm.get('passwordd').errors.minlength">
+          Password doit etre au mois 6 character *
+          </div>
+        </div>
+        </div>
+      </div>
+
+    <div class="form-group row">  
+        <label class="col-4"> Role:</label>
+        <div class="col-8">
+        <select name="id_role" id="id_role" class='form-control row'        
+         formControlName="id_role"
+        [ngClass]="{
+         'is-invalid':
+         registerForm.get('id_role')?.touched && registerForm.get('id_role').invalid
+       }">
+            <option value="1">SUPER_ADMIN</option>
+            <option value="2">USER</option>
+            </select>
+            <div
+            *ngIf="registerForm.get('id_role')?.touched && registerForm.get('id_role').invalid"
+            class="invalid-feedback row"
+          >
+            <div class="errormsg" *ngIf="registerForm.get('id_role').errors.required">
+              Role obligatoir *
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">  
+            <label class="col-4"> Département:</label>
+            <div class="col-8">
+            <select name="id_departement" id="id_departement" class='form-control row'
+             formControlName="id_departement"
+        [ngClass]="{
+         'is-invalid':
+         registerForm.get('id_departement')?.touched && registerForm.get('id_departement').invalid
+       }"
+            >
+            <option *ngFor="let dept of this.departement_data" 
+            [value]="dept.id_departement">{{ dept.nom_departement }}</option>
+                </select>
+                <div
+            *ngIf="registerForm.get('id_departement')?.touched && registerForm.get('id_departement').invalid"
+            class="invalid-feedback row"
+          >
+            <div class="errormsg" *ngIf="registerForm.get('id_departement').errors.required">
+            Departement obligatoir *
+            </div>
+            </div>
+          </div>
+            </div>
+    </form>
+    <div class="row">
+        <div class="col-3"> 
+            <button class = "btn btn-success" type ="submit"
+            style="background-color: rgb(74, 235, 53);  color: black;border: 2px solid black;"
+            [disabled]="!registerForm.valid"(click)= onSubmit() 
+            >Inscription</button>
+        </div>
+        <div class="col-9">
+               <a routerLink="" routerLinkActive="active" class="nav-link" style="margin-left:10px;">
+                Vous avez déjà un compte? S'identifier
+            </a>
+        </div>
+    </div>
+    </div> 
