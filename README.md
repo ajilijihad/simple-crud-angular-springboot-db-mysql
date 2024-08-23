@@ -1,4 +1,4 @@
 # Crud function 
 angular
 springboot
-maysql db
+mysql db
